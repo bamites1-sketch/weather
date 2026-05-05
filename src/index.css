@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 4px; }
+
+/* ── Font rendering ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+/* ── Root defaults ────────────────────────────────────────────────────────── */
+html {
+  /* Prevent layout shift from scrollbar appearing */
+  scrollbar-gutter: stable;
+  /* Smooth scroll for anchor links */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  /* Prevent text size inflation on mobile after orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Improve touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Touch momentum on horizontal scroll strips ───────────────────────────── */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+}
+.scroll-touch > * {
+  scroll-snap-align: start;
+}
+
+/* ── Hide scrollbar but keep scroll functionality ─────────────────────────── */
+.no-scrollbar {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+/* ── GPU-accelerated transitions ──────────────────────────────────────────── */
+.gpu {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ── Responsive fluid temperature text ───────────────────────────────────── */
+.temp-display {
+  font-size: clamp(3rem, 15vw, 5.5rem);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ── Glassmorphism card ───────────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Skeleton shimmer ─────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.06) 25%,
+    rgba(255,255,255,0.13) 50%,
+    rgba(255,255,255,0.06) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* ── Tap highlight removal on mobile ──────────────────────────────────────── */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ── Focus visible only for keyboard users ────────────────────────────────── */
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible { outline: 2px solid rgba(255,255,255,0.6); outline-offset: 2px; }
