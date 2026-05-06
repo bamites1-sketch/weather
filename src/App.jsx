@@ -165,7 +165,7 @@ const App = () => {
             {/* Brand */}
             <div className="min-w-0">
               <h1 className="text-white font-bold text-base sm:text-lg flex items-center gap-2 truncate">
-                🌤️ {t('app_name')}
+                ⛅ {t('app_name')}
               </h1>
               <p className="text-white/35 text-xs hidden sm:block">{t('app_tagline')}</p>
             </div>
